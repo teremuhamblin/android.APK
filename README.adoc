@@ -1,0 +1,245 @@
+---
+
+= android.APK — Ultra Premium Edition
+:doctype: book
+:toc: left
+:toclevels: 4
+:icons: font
+:sectnums:
+:source-highlighter: coderay
+:hardbreaks:
+
+Un projet Android minimaliste, stable, extensible, conçu pour générer automatiquement un APK via GitHub Actions.  
+Architecture Kotlin propre, CI verrouillée sur Ubuntu 24.04, workflows professionnels, et base parfaite pour évoluer vers MVVM, Material 3, Release signée ou publication automatique.
+
+---
+
+== 🏷️ Badges
+[horizontal]
+Build Debug: image:https://img.shields.io/badge/CI-Debug-green[CI Debug]  
+Release: image:https://img.shields.io/badge/Release-Automated-blue[Release]  
+Android: image:https://img.shields.io/badge/Android-Kotlin-orange[Kotlin]  
+License: image:https://img.shields.io/badge/License-MIT-purple[MIT]
+
+---
+
+== 🧭 Vision du projet
+Ce projet a été conçu pour :
+
+- Offrir une base Android immédiatement compilable  
+- Automatiser la génération d’APK via CI/CD  
+- Fournir une structure propre, claire et extensible  
+- Servir de squelette pour tout futur projet Android  
+- Permettre l’évolution vers des architectures avancées (MVVM, Clean Architecture)
+
+---
+
+== 📁 Structure complète du projet
+
+[source,tree]
+----
+android.APK/
+├── app/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── AndroidManifest.xml
+│   │   │   ├── java/com/example/androidapk/MainActivity.kt
+│   │   │   └── res/layout/activity_main.xml
+│   │   ├── test/
+│   │   └── androidTest/
+│   └── build.gradle.kts
+│
+├── gradle/
+│   └── wrapper/gradle-wrapper.properties
+│
+├── gradlew
+├── gradlew.bat
+├── settings.gradle.kts
+├── build.gradle.kts
+│
+├── .github/
+│   └── workflows/
+│       ├── android.yml
+│       ├── android-release.yml
+│       ├── android-publish.yml
+│       └── android-instrumented-tests.yml
+│
+└── README.adoc
+----
+
+---
+
+== 📱 Application Android
+
+=== MainActivity.kt
+- Activité principale minimaliste  
+- Kotlin 100%  
+- Base parfaite pour MVVM ou Material 3  
+
+=== activity_main.xml
+- Layout propre  
+- ConstraintLayout  
+- Texte centré  
+- Structure prête pour UI avancée
+
+=== AndroidManifest.xml
+- Déclaration minimale  
+- Activité principale  
+- Compatibilité Android 8+
+
+---
+
+== ⚙️ Architecture du projet
+
+=== Architecture logique
+[source]
+----
+App Layer
+ ├── UI (Activities, Views)
+ ├── Resources (XML)
+ └── Manifest
+
+Build Layer
+ ├── Gradle Root
+ ├── Gradle App Module
+ └── Wrapper
+
+CI/CD Layer
+ ├── Debug Build
+ ├── Release Build
+ ├── Publish Release
+ └── Instrumented Tests
+----
+
+=== Architecture technique
+[cols="2,8",options="header"]
+|===
+| Composant | Rôle
+| MainActivity | Point d’entrée de l’application
+| Layout XML | Interface utilisateur
+| Manifest | Déclaration système
+| Gradle Root | Configuration globale
+| Gradle App | Configuration Android
+| Workflows | Automatisation CI/CD
+|===
+
+---
+
+== ⚙️ Build & Gradle
+
+=== build.gradle.kts (root)
+- Plugins Kotlin DSL  
+- Configuration globale  
+- Versioning propre  
+
+=== app/build.gradle.kts
+- SDK min/target  
+- Dépendances Android  
+- BuildTypes (debug/release)  
+- Préparation signature release  
+
+=== settings.gradle.kts
+- Déclaration du module app
+
+=== gradle-wrapper.properties
+- Version Gradle stable  
+- Compatible Android Studio Koala
+
+---
+
+== 🔧 CI/CD — Dossier .github/workflows/
+
+=== android.yml — Build Debug
+- Ubuntu 24.04  
+- JDK Temurin 17  
+- Validation du wrapper Gradle  
+- Build Debug  
+- Upload app-debug.apk
+
+=== android-release.yml — Build Release signé
+- Signature via GitHub Secrets  
+- Génération APK + AAB  
+- Artefacts prêts pour Play Store  
+
+Secrets requis :
+[horizontal]
+ANDROIDKEYSTORE, ANDROIDKEYSTOREPASSWORD, ANDROIDKEYALIAS, ANDROIDKEY_PASSWORD
+
+=== android-publish.yml — Publication GitHub Releases
+- Déclenché sur tag versionné  
+- Build Release  
+- Création automatique de release  
+- Upload APK + AAB  
+
+=== android-instrumented-tests.yml — Tests instrumentés
+- Lancement d’un émulateur Android  
+- Exécution des tests UI  
+- Upload des rapports  
+
+---
+
+== 🧪 Tests
+
+=== test/
+- Tests unitaires Kotlin  
+- Structure prête pour extension
+
+=== androidTest/
+- Tests instrumentés  
+- UI tests  
+- Compatible CI (émulateur)
+
+---
+
+== 🚀 Compilation locale
+
+=== Build Debug
+[source,bash]
+----
+./gradlew assembleDebug
+----
+
+APK généré dans :
+[source,bash]
+----
+app/build/outputs/apk/debug/app-debug.apk
+----
+
+=== Build Release (non signé)
+[source,bash]
+----
+./gradlew assembleRelease
+----
+
+---
+
+== 📚 Extensibilité
+
+Tu peux étendre android.APK avec :
+
+- Material 3 (MDC)  
+- MVVM + ViewModel + LiveData  
+- Clean Architecture  
+- Module core/ ou feature/  
+- Signature Release automatique  
+- Workflow Play Store  
+- API REST + Retrofit  
+- Base de données Room  
+- Jetpack Navigation  
+
+---
+
+== 🛡️ Sécurité
+
+- Signature Release via GitHub Secrets  
+- Pas de clés sensibles dans le code  
+- CI verrouillée sur Ubuntu 24.04  
+- Validation automatique du Gradle Wrapper  
+- Build reproductible  
+
+---
+
+== 📜 Licence
+Projet sous licence MIT.
+
+---
