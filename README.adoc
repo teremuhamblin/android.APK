@@ -1,5 +1,3 @@
----
-
 = android.APK — Ultra Premium Edition
 :doctype: book
 :toc: left
